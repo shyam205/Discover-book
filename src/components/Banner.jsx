@@ -6,7 +6,7 @@ export default function Banner({handleSearch, handleClickSearch, handleSelect}) 
     const [search, setSearch] = useState('');
     const [selectedOption, setSelectedOption] = useState("");
 
-    const options = ["Boot Title", "Author"];
+    const options = ["BooK Title", "Author"];
 
     const onInputChange = (e) => {
         setSearch(e.target.value);

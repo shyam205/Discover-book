@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getBookInfo } from '../api/books';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Book() {
     const { book_name } = useParams(); // Get book ID from the URL
@@ -41,45 +43,51 @@ function Book() {
 
     return (
         <>
+            <div className="bg-orange-500"><Navbar /></div>
              {
                 !!bookData && (
-                    <div className="p-8">
-                    <h1 className="text-4xl font-bold">{bookData?.docs[0]?.title}</h1>
-                    <p className="text-xl text-gray-600">
-                        Author: {bookData?.docs[0]?.author_name[0] || "Unknown"}
-                    </p>
-                    <img
-                        className="mt-8"
-                        src={`https://covers.openlibrary.org/b/olid/${bookData?.docs[0]?.cover_edition_key}-L.jpg`}
-                        alt={bookData?.docs[0]?.title}
-                    />
-                    <p>Rating: {bookData?.docs[0]?.ratings_average?.toFixed(2) || ''}</p>
-                    <p className="mt-3">Author Alternative Name: {bookData?.docs[0]?.author_alternative_name ? bookData?.docs[0]?.author_alternative_name[0] : ""}</p>
-                    <p className="mt-3">First Publish Year: {bookData?.docs[0]?.first_publish_year || ""}</p>
-                    <p className="mt-3">Ebook Access: {bookData?.docs[0]?.ebook_access || ""}</p>
-                    <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
-                        <p>Language:</p>
-                        <div className="flex justify-start items-center gap-x-2">
-                            {
-                                bookData?.docs[0]?.language?.map((lan, index) => (
-                                    <p key={index}>{lan}{index !== bookData?.docs[0]?.language?.length - 1 && ','}</p>
-                                ))
-                            }
-                        </div>
-                    </div>
-                    <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
-                        <p className="text-nowrap">Publish Year:</p>
-                        <div className="flex justify-start items-center gap-x-2">
-                            {
-                                bookData?.docs[0]?.publish_year?.map((publish, index) => (
-                                    <p key={index}>{publish}{index !== bookData?.docs[0]?.publish_year?.length - 1 && ','}</p>
-                                ))
-                            }
-                        </div>
-                    </div>
+                    <div className="flex flex-col sm:flex-row justify-center sm:justify-start gap-x-0 sm:gap-x-5 mb-10 w-full sm:w-[80%] mx-auto">
+                        <div className="p-8 w-full sm:w-[30%]">
+                            <h1 className="text-4xl font-bold">{bookData?.docs[0]?.title}</h1>
+                            <p className="text-xl text-gray-600">
+                                Author: {bookData?.docs[0]?.author_name[0] || "Unknown"}
+                            </p>
+                            <p>Rating: {bookData?.docs[0]?.ratings_average?.toFixed(2) || ''}</p>
+                            <p className="mt-3">Author Alternative Name: {bookData?.docs[0]?.author_alternative_name ? bookData?.docs[0]?.author_alternative_name[0] : ""}</p>
+                            <p className="mt-3">First Publish Year: {bookData?.docs[0]?.first_publish_year || ""}</p>
+                            <p className="mt-3">Ebook Access: {bookData?.docs[0]?.ebook_access || ""}</p>
+                            <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
+                                <p>Language:</p>
+                                <div className="flex justify-start items-center gap-x-2">
+                                    {
+                                        bookData?.docs[0]?.language?.map((lan, index) => (
+                                            <p key={index}>{lan}{index !== bookData?.docs[0]?.language?.length - 1 && ','}</p>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
+                                <p className="text-nowrap">Publish Year:</p>
+                                <div className="flex justify-start items-center gap-x-2">
+                                    {
+                                        bookData?.docs[0]?.publish_year?.map((publish, index) => (
+                                            <p key={index}>{publish}{index !== bookData?.docs[0]?.publish_year?.length - 1 && ','}</p>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            </div>
+                            <div className="flex justify-center items-center w-full sm:w-[70%]">
+                                <img
+                                    className="mt-8"
+                                    src={`https://covers.openlibrary.org/b/olid/${bookData?.docs[0]?.cover_edition_key}-L.jpg`}
+                                    alt={bookData?.docs[0]?.title}
+                                />
+                            </div>
                     </div>
                 )
             }
+            <Footer />
         </>
     )
 }

@@ -58,7 +58,7 @@ function Book() {
                             <p className="mt-3">Ebook Access: {bookData?.docs[0]?.ebook_access || ""}</p>
                             <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
                                 <p>Language:</p>
-                                <div className="flex justify-start items-center gap-x-2">
+                                <div className="flex flex-wrap justify-start items-center gap-x-2">
                                     {
                                         bookData?.docs[0]?.language?.map((lan, index) => (
                                             <p key={index}>{lan}{index !== bookData?.docs[0]?.language?.length - 1 && ','}</p>
@@ -68,7 +68,7 @@ function Book() {
                             </div>
                             <div className="flex justify-start items-center gap-x-2 mt-2 flex-wrap">
                                 <p className="text-nowrap">Publish Year:</p>
-                                <div className="flex justify-start items-center gap-x-2">
+                                <div className="flex flex-wrap justify-start items-center gap-x-2">
                                     {
                                         bookData?.docs[0]?.publish_year?.map((publish, index) => (
                                             <p key={index}>{publish}{index !== bookData?.docs[0]?.publish_year?.length - 1 && ','}</p>
